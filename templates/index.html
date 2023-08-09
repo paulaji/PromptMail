@@ -1,0 +1,31 @@
+<!--  -->
+<!--  -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PromptMail</title>
+  </head>
+  <body>
+    <h1>PromptMail</h1>
+    <form action="/" method="post">
+      <label for="from">From:</label>
+      <input type="text" id="from" name="from" /><br /><br />
+
+      <label for="to">To:</label>
+      <input type="text" id="to" name="to" /><br /><br />
+
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" name="subject" /><br /><br />
+
+      <label for="date">Date:</label>
+      <input type="text" id="date" name="date" /><br /><br />
+
+      <label for="content">Content Idea:</label>
+      <textarea id="content" name="content"></textarea><br /><br />
+
+      <input type="submit" value="Generate Email" />
+    </form>
+    <h2>Generated Email:</h2>
+    <p>{{ generated_email }}</p>
+  </body>
+</html>
