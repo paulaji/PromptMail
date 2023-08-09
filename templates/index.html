@@ -1,31 +1,52 @@
-<!--  -->
-<!--  -->
 <!DOCTYPE html>
 <html>
   <head>
     <title>PromptMail</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      /*    your styling here    */
+    </style>
   </head>
   <body>
-    <h1>PromptMail</h1>
-    <form action="/" method="post">
-      <label for="from">From:</label>
-      <input type="text" id="from" name="from" /><br /><br />
+    <div class="container mt-4">
+      <h1>Name</h1>
+      <h5>
+        Tagline
+      </h5>
+      <form action="/" method="post">
+        <div class="form-group">
+          <label for="subject">Subject:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="subject"
+            name="subject"
+            placeholder="eg: Product Discussion"
+          />
+        </div>
+        <div class="form-group">
+          <label for="content">Content Idea:</label>
+          <textarea
+            class="form-control"
+            id="content"
+            name="content"
+            placeholder="eg: Product Discussion tomorrow - Hall A"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">
+          Generate Email
+        </button>
+      </form>
 
-      <label for="to">To:</label>
-      <input type="text" id="to" name="to" /><br /><br />
-
-      <label for="subject">Subject:</label>
-      <input type="text" id="subject" name="subject" /><br /><br />
-
-      <label for="date">Date:</label>
-      <input type="text" id="date" name="date" /><br /><br />
-
-      <label for="content">Content Idea:</label>
-      <textarea id="content" name="content"></textarea><br /><br />
-
-      <input type="submit" value="Generate Email" />
-    </form>
-    <h2>Generated Email:</h2>
-    <p>{{ generated_email }}</p>
+      <h2 class="mt-4">Generated Email:</h2>
+      <div class="email-preview border">
+        <p class="font-weight-bold">{{ generated_subject }}</p>
+        <hr />
+        <p>{{ generated_content }}</p>
+      </div>
+    </div>
   </body>
 </html>
