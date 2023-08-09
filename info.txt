@@ -1,0 +1,2 @@
+pip install openai // install openai to interact with the API keys
+pip install Flask // to setup Flask for the web application
