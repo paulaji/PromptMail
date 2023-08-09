@@ -2,30 +2,40 @@ from flask import Flask, render_template, request
 import openai
 
 app = Flask(__name__)
-openai.api_key = "add here"
+openai.api_key = "your API key here"
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    generated_email = ""
+    generated_subject = generated_content = ""
+    error_message = ""
 
     if request.method == "POST":
-        from_text = request.form["from"]
-        to_text = request.form["to"]
         subject_text = request.form["subject"]
-        date_text = request.form["date"]
         content_idea = request.form["content"]
 
-        prompt = f"From: {from_text}\nTo: {to_text}\nSubject: {subject_text}\nDate: {date_text}\nContent: {content_idea}\nGenerate email:"
+        try:
+            # Generate content prompt
+            content_prompt = "your prompt here: " + content_idea
+            content_response = openai.Completion.create(
+                engine="text-davinci-003",
+                prompt=content_prompt,
+                max_tokens=150  # Adjust the token limit as needed
+            )
+            generated_content = content_response.choices[0].text.strip()
 
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt,
-            max_tokens=150
-        )
+            # Generate subject prompt
+            subject_prompt = "your prompt here" + content_idea
+            subject_response = openai.Completion.create(
+                engine="text-davinci-003",
+                prompt=subject_prompt,
+                max_tokens=50  # Adjust the token limit as needed
+            )
+            generated_subject = subject_response.choices[0].text.strip()
 
-        generated_email = response.choices[0].text.strip()
+        except Exception as e:
+            error_message = "An error occurred. Please refresh and try again."
 
-    return render_template("index.html", generated_email=generated_email)
+    return render_template("index.html", generated_subject=generated_subject, generated_content=generated_content, error_message=error_message)
 
 if __name__ == "__main__":
     app.run(debug=True)
