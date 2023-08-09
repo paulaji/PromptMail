@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import openai
 
 app = Flask(__name__)
-openai.api_key = "OPEN_AI_API"
+openai.api_key = "ypur API key here"
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -15,7 +15,7 @@ def index():
 
         try:
             # Generate content prompt
-            content_prompt = "Generate a proper email body content only- Content: " + content_idea
+            content_prompt = "ypur prompt here" + content_idea
             content_response = openai.Completion.create(
                 engine="text-davinci-003",
                 prompt=content_prompt,
@@ -24,7 +24,7 @@ def index():
             generated_content = content_response.choices[0].text.strip()
 
             # Generate subject prompt
-            subject_prompt = "Generate a proper formal email subject from: " + content_idea
+            subject_prompt = "ypur prompt here" + content_idea
             subject_response = openai.Completion.create(
                 engine="text-davinci-003",
                 prompt=subject_prompt,
